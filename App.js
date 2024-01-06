@@ -8,7 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
-  Keyboard
+  Keyboard, ScrollView
 } from 'react-native';
 import Task from './components/Task';
 
@@ -17,7 +17,7 @@ export default function App() {
   const [taskItems, setTaskItems] = useState([])
 
   const handleAddTask = () => {
-    Keyboard.dismiss
+    Keyboard.dismiss()
     setTaskItems([...taskItems, task])
     setTask(null);
   }
@@ -32,7 +32,7 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
         <Text style={styles.sectionTitle}>Today's tasks</Text>
-        <View style={styles.items}>
+        <ScrollView style={styles.items}>
           {
             taskItems.map((item, index) => {
               return (
@@ -42,7 +42,7 @@ export default function App() {
               )
             })
           }
-        </View>
+        </ScrollView>
       </View>
 
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.writeTaskWrapper}>
